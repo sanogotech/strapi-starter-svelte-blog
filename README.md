@@ -1,2 +1,4 @@
-# strapi-starter-svelte-blog
-Strapi application
+# Strapi application
+
+A quick description of your strapi application
+
