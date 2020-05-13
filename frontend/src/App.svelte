@@ -4,12 +4,13 @@
   import { GET_ARTICLES } from "./query.js";
   import moment from "moment";
 
-  let api_url = "";
+  let api_url = process.env.SVELTE_APP_STRAPI_API_URL;
 
   setClient(apolloClient);
 
   const client = getClient();
   const articles = query(client, { query: GET_ARTICLES });
+
 </script>
 
 <style>
@@ -31,12 +32,15 @@
 </style>
 
 <h1>Strapi Blog</h1>
+
+
 <div>
+
   {#await $articles}
     <div>Loading...</div>
   {:then result}
     {#each result.data.articles as article (article.id)}
-      <div class="uk-card uk-card-muted">
+      <div>
         <img src={api_url + article.image.url} alt="" height="100" />
         <h2>{article.title}</h2>
         <span>{article.published_at}</span>
